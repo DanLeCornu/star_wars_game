@@ -2,8 +2,14 @@ require_relative '../objects/player_xwing'
 
 class PlayState < GameState
 
-	def initiialize
+	def initialize
 		@player_xwing = PlayerXwing.new
+
+		#images
+		@background = Gosu::Image.new(
+										$window,
+										'art/starry_background.png'
+									)
 	end
 
 	def update
@@ -12,6 +18,7 @@ class PlayState < GameState
 
 	def draw
 		@player_xwing.draw
+		@background.draw(0,0,0,1,1.5)
 	end
 
 	def button_down(id)

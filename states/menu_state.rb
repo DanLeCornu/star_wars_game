@@ -16,6 +16,16 @@ class MenuState < GameState
 						 	$window,
 						 	'art/sw_title.png'
 						 )
+
+		# menu options
+		continue_text = @play_state ? 'Press C to Continue,' : ''
+		@menu_options = Gosu::Image.from_text(
+											$window,
+											"Press Q to Quit, #{continue_text} Press N to start a New Game",
+											Gosu.default_font_name,
+											30
+										)
+
 	end
 
 	def enter
@@ -54,16 +64,6 @@ class MenuState < GameState
 
 	end
 
-	def menu_options
-		continue_text = @play_state ? 'Press C to Continue,' : ''
-		@menu_options = Gosu::Image.from_text(
-											$window,
-											"Press Q to Quit, #{continue_text} Press N to start a New Game",
-											Gosu.default_font_name,
-											30
-										)
-	end
-
 	def update
 
 		# position for title
@@ -79,7 +79,7 @@ class MenuState < GameState
 		@background_fy = 1.5
 
 		# position for menu options
-		@menu_options_x = self.width/2 - @title.width/2
+		@menu_options_x = $window.width/2 - @menu_options.width/2
 		@menu_options_y = 200
 		@menu_options_z = 1
 
@@ -103,7 +103,7 @@ class MenuState < GameState
 		@menu_options.draw(
 										@menu_options_x,
 										@menu_options_y,
-										@menu_options_z,
+										@menu_options_z
 									)
 	end
 
