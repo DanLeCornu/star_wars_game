@@ -25,7 +25,6 @@ class MenuState < GameState
 											Gosu.default_font_name,
 											30
 										)
-
 	end
 
 	def enter

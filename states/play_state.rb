@@ -24,7 +24,7 @@ class PlayState < GameState
 	end
 
 	def music
-		@@music = Gosu::Song.new(
+		@@music ||= Gosu::Song.new(
 									$window,
 									'sound/battle_of_yavin.mp3'
 								)

@@ -4,18 +4,11 @@ class PlayerXwing
 	SHOOT_DELAY = 250
 
 	def initialize
-		@player = Gosu::Image.new($window, 'art/player_crop.png')
+		@player_image = Gosu::Image.new($window, 'art/player_crop.png')
 		@x = $window.width/2 - @player.width/2
 		@y = $window.height - 200
 		@z = 1
 		@last_shot = 0
-
-		# sound (commented out beacause XwingLaser class
-		# will handle the sound of the laser)
-		# @shoot = Gosu::Sample.new(
-		# 						$window,
-		# 						'sound/xwing_laser.wav'
-		# 					)
 	end
 
 	def update
@@ -26,28 +19,20 @@ class PlayerXwing
 		if $window.button_down?(Gosu::KbL)
 			shoot
 		end
+		# if @laser
+		# 	@laser.update
+		# end
 	end
 
 	def draw
-		@player.draw(@x,@y,@z)
-		if @laser
-			@laser.draw
-		end
+		@player_image.draw(@x,@y,@z)
 	end
-
-	# commented below method out for now, as
-	# code in update fires the shoot method instead
-	# def button_down(id)
-	# 	if id == Gosu::KbL
-	# 		@shoot.play(volume = 0.8)
-	# 	end
-	# end
 
 	def shoot
 		if Gosu.milliseconds - @last_shot > SHOOT_DELAY
 			@last_shot = Gosu.milliseconds
-			@laser = XwingLaser.new(@x,@y).fire(100)
-			@laser
+			# XwingLaser.new(@x,@y).fire(100)
+			XwingLaser.new(@x,@y)
 		end
 	end
 
