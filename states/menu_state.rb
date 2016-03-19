@@ -68,7 +68,7 @@ class MenuState < GameState
 
 		# position for title
 		@title_x = $window.width/2 - @title.width/2
-		@title_y = 40
+		@title_y = $window.height/2 - @title.height/2 - 50
 		@title_z = 1
 
 		# position for background
@@ -80,7 +80,7 @@ class MenuState < GameState
 
 		# position for menu options
 		@menu_options_x = $window.width/2 - @menu_options.width/2
-		@menu_options_y = 200
+		@menu_options_y = $window.height/2 - @menu_options.height/2 + 50
 		@menu_options_z = 1
 
 	end
