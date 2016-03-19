@@ -1,5 +1,5 @@
 require_relative '../objects/player_xwing'
-# require_relative '../objects/xwing_laser'
+require_relative '../objects/xwing_laser'
 
 class PlayState < GameState
 
@@ -44,8 +44,6 @@ class PlayState < GameState
 		if id == Gosu::KbEscape || id == Gosu::KbQ
 			GameState.switch(MenuState.instance)
 		end
-		# replaced, not needed, probs delete this
-		# @player_xwing.button_down(id)
 	end
 
 end

@@ -1,9 +1,14 @@
 class PlayerXwing
 
+	attr_accessor :x, :y
+	SHOOT_DELAY = 250
+
 	def initialize
 		@player = Gosu::Image.new($window, 'art/player_crop.png')
 		@x = $window.width/2 - @player.width/2
 		@y = $window.height - 200
+		@z = 1
+		@last_shot = 0
 
 		# sound (commented out beacause XwingLaser class
 		# will handle the sound of the laser)
@@ -24,7 +29,10 @@ class PlayerXwing
 	end
 
 	def draw
-		@player.draw(@x,@y,1)
+		@player.draw(@x,@y,@z)
+		if @laser
+			@laser.draw
+		end
 	end
 
 	# commented below method out for now, as
@@ -36,7 +44,11 @@ class PlayerXwing
 	# end
 
 	def shoot
-		Laser.new(@x,@y).fire(100)
+		if Gosu.milliseconds - @last_shot > SHOOT_DELAY
+			@last_shot = Gosu.milliseconds
+			@laser = XwingLaser.new(@x,@y).fire(100)
+			@laser
+		end
 	end
 
 end
