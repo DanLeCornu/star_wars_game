@@ -1,5 +1,6 @@
 class XwingLaser
 
+	attr_accessor :x, :y
 	COLOR = Gosu::Color::RED
 
 	def initialize(x,y)
@@ -12,7 +13,7 @@ class XwingLaser
 							 $window,
 							 'art/xwing_laser.png'
 						 )
-		@laser_speed = 10
+		@laser_speed = 60
 	end
 
 	def fire(speed)
@@ -21,12 +22,13 @@ class XwingLaser
 	end
 
 	def update
-		# @y += -@laser_speed
-		fly_distance = (Gosu.milliseconds - @fired_at) * 0.001 * @speed
+		@y = @y + 20
+		@y += -@laser_speed
+		# fly_distance = (Gosu.milliseconds - @fired_at) * 0.001 * @speed
 	end
 
 	def draw
-		@laser.draw(100,100,1)
+		@laser.draw(@x,@y,@z,0.5,0.5)
 
 		# #drawing left laser
 		# $window.draw_quad(

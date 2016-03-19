@@ -5,7 +5,7 @@ class PlayerXwing
 
 	def initialize
 		@player_image = Gosu::Image.new($window, 'art/player_crop.png')
-		@x = $window.width/2 - @player.width/2
+		@x = $window.width/2 - @player_image.width/2
 		@y = $window.height - 200
 		@z = 1
 		@last_shot = 0
@@ -19,20 +19,23 @@ class PlayerXwing
 		if $window.button_down?(Gosu::KbL)
 			shoot
 		end
-		# if @laser
-		# 	@laser.update
-		# end
+		if @laser
+			@laser.update
+		end
 	end
 
 	def draw
-		@player_image.draw(@x,@y,@z)
+		@player_image.draw(@x,@y,@z,0.6,0.6)
+		if @laser
+			@laser.draw
+		end
 	end
 
 	def shoot
 		if Gosu.milliseconds - @last_shot > SHOOT_DELAY
 			@last_shot = Gosu.milliseconds
 			# XwingLaser.new(@x,@y).fire(100)
-			XwingLaser.new(@x,@y)
+			@laser = XwingLaser.new(@x,@y)
 		end
 	end
 
