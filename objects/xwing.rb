@@ -1,5 +1,6 @@
 class Xwing
 
+	attr_accessor :xwing_laser, :score
 	SHOOT_DELAY = 250
 
 	def initialize
@@ -9,7 +10,7 @@ class Xwing
 		@z = 1
 		@last_shot = 0
 		@alive = true
-		@lives = 3
+		@score = 0
 	end
 
 	def update
@@ -20,46 +21,35 @@ class Xwing
 		if $window.button_down?(Gosu::KbL)
 			shoot
 		end
-		if @laser
-			@laser.update
+		if @xwing_laser
+			@xwing_laser.update
 		end
+
 	end
 
 	def draw
 		@xwing_image.draw(@x,@y,@z,0.6,0.6)
-		if @laser
-			@laser.draw
+		if @xwing_laser
+			@xwing_laser.draw
 		end
 	end
 
 	def shoot
 		if Gosu.milliseconds - @last_shot > SHOOT_DELAY
 			@last_shot = Gosu.milliseconds
-			@laser = XwingLaser.new(@x,@y)
+			@xwing_laser = XwingLaser.new(@x,@y)
 		end
 	end
 
 	def hitbox
-		hitbox_x = ((@x - @xwing_image.width/2).to_i..(@x + @xwing_image.width/2.to_i)).to_a
-		hitbox_y = ((@y - @xwing_image.width/2).to_i..(@y + @xwing_image.width/2).to_i).to_a
+		hitbox_x = ((@x - 35).to_i..(@x + 35).to_i).to_a
+		hitbox_y = ((@y - 35).to_i..(@y + 35).to_i).to_a
 		{x: hitbox_x, y: hitbox_y}
 	end
 
 	def kill
-		@lives -= 1
 		alive = false
-		return if lives <= 0
-		warp
-	end
-
-	def warp
-		@x = $window.width/2 - @xwing_image.width/2
-		@y = $window.height - 200
-		@alive = true
-	end
-
-	def dead?
-		!@alive
+		GameState.switch(MenuState.instance)
 	end
 
 end

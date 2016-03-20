@@ -28,21 +28,15 @@ class TieFighterLaser
 		@laser_image.draw(@x+35,@y+40,@z,0.2,0.2)
 	end
 
-
 	def hitbox
-	  hitbox_x = ((@x - @laser_image.width/2).to_i..(@x + @laser_image.width/2.to_i)).to_a
-	  hitbox_y = ((@y - @laser_image.width/2).to_i..(@y + @laser_image.width/2).to_i).to_a
-	  {x: hitbox_x, y: hitbox_y}
+		hitbox_x = ((@x - 5).to_i..(@x + 5).to_i).to_a
+		hitbox_y = ((@y - 5).to_i..(@y + 5).to_i).to_a
+		{x: hitbox_x, y: hitbox_y}
 	end
 
 	def kill
 	  @alive = false
 	end
-
-	def dead?
-	  !@alive
-	end
-
 
 	private
 

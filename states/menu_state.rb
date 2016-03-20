@@ -12,14 +12,16 @@ class MenuState < GameState
 		@title = Gosu::Image.new($window,'art/sw_title.png')
 
 		# menu options
-		continue_text = @play_state ? 'Press C to Continue,' : ''
 		@menu_options = Gosu::Image.from_text($window,'Press Escape to Quit, Press N to start a New Game',Gosu.default_font_name,30)
+
+		#controls text
 		@controls_header = Gosu::Image.from_text($window,'Controls:',Gosu.default_font_name,30)
 		@w_text = Gosu::Image.from_text($window,'W = Up',Gosu.default_font_name,20)
 		@a_text = Gosu::Image.from_text($window,'A = Left',Gosu.default_font_name,20)
 		@s_text = Gosu::Image.from_text($window,'S = Down',Gosu.default_font_name,20)
 		@d_text = Gosu::Image.from_text($window,'D = Right',Gosu.default_font_name,20)
 		@l_text = Gosu::Image.from_text($window,'L = Fire Laser Cannons',Gosu.default_font_name,20)
+
 	end
 
 	def enter
