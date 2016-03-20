@@ -1,4 +1,4 @@
-class XwingLaser
+class TieFighterLaser
 
 	def initialize(x,y)
 		@x = x
@@ -11,21 +11,21 @@ class XwingLaser
 							 'art/xwing_laser.png'
 						 )
 		@alive = true
-		@laser_speed = 60
+		@laser_speed = 50
 		@distance_traveled, @max_distance = 0, 50
 	end
 
 	def update
-		@y += -@laser_speed
+		@y += +@laser_speed
 		@distance_traveled += 1
 		kill if @distance_traveled > @max_distance
 	end
 
 	def draw
 		# left laser
-		@laser_image.draw(@x-3,@y+30,@z,0.5,0.5)
+		@laser_image.draw(@x,@y,@z,0.5,0.5)
 		# right laser
-		@laser_image.draw(@x+79,@y+30,@z,0.5,0.5)
+		@laser_image.draw(@x,@y,@z,0.5,0.5)
 	end
 
 
@@ -49,7 +49,7 @@ class XwingLaser
 	def sound
 		@@sound = Gosu::Sample.new(
 								$window,
-								'sound/xwing_laser.wav'
+								'sound/tie_laser.mp3'
 							)
 	end
 
