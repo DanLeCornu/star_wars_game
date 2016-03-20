@@ -4,14 +4,14 @@ class TieFighterLaser
 		@x = x
 		@y = y
 		@z = 1
-		sound.play
+		sound.play.volume=0.3
 
 		@laser_image = Gosu::Image.new(
 							 $window,
-							 'art/xwing_laser.png'
+							 'art/tai_laser.png'
 						 )
 		@alive = true
-		@laser_speed = 50
+		@laser_speed = 20
 		@distance_traveled, @max_distance = 0, 50
 	end
 
@@ -23,9 +23,9 @@ class TieFighterLaser
 
 	def draw
 		# left laser
-		@laser_image.draw(@x,@y,@z,0.5,0.5)
+		@laser_image.draw(@x+25,@y+40,@z,0.2,0.2)
 		# right laser
-		@laser_image.draw(@x,@y,@z,0.5,0.5)
+		@laser_image.draw(@x+35,@y+40,@z,0.2,0.2)
 	end
 
 

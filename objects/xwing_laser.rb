@@ -23,9 +23,9 @@ class XwingLaser
 
 	def draw
 		# left laser
-		@laser_image.draw(@x-3,@y+30,@z,0.5,0.5)
+		@laser_image.draw(@x-3,@y+30,@z,0.4,0.4)
 		# right laser
-		@laser_image.draw(@x+79,@y+30,@z,0.5,0.5)
+		@laser_image.draw(@x+79,@y+30,@z,0.4,0.4)
 	end
 
 
