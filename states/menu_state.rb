@@ -22,6 +22,9 @@ class MenuState < GameState
 		@d_text = Gosu::Image.from_text($window,'D = Right',Gosu.default_font_name,20)
 		@l_text = Gosu::Image.from_text($window,'L = Fire Laser Cannons',Gosu.default_font_name,20)
 
+		#rules
+		@rules_text = Gosu::Image.from_text($window, 'Shoot the TIE Fighters to score points, avoid enemies and their lasers to survive!',Gosu.default_font_name,20)
+
 	end
 
 	def enter
@@ -100,6 +103,10 @@ class MenuState < GameState
 		@l_text_x = $window.width/2 - @l_text.width/2
 		@l_text_y = $window.height/2 - @l_text.height/2 + 225
 
+		# position for d
+		@rules_text_x = $window.width/2 - @rules_text.width/2
+		@rules_text_y = $window.height/2 - @rules_text.height/2 + 300
+
 	end
 
 	def draw
@@ -112,6 +119,8 @@ class MenuState < GameState
 		@s_text.draw(@s_text_x,@s_text_y,1)
 		@d_text.draw(@d_text_x,@d_text_y,1)
 		@l_text.draw(@l_text_x,@l_text_y,1)
+
+		@rules_text.draw(@rules_text_x,@rules_text_y,1)
 	end
 
 end

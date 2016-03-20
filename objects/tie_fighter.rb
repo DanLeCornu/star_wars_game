@@ -14,7 +14,7 @@ class TieFighter
 		@y = 0
 		@z = 1
 		@alive = true
-		@speed = rand(7..10)
+		@speed = rand(8..11)
 		@last_shot = 0
 		sound.play
 	end
