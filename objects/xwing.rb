@@ -1,6 +1,6 @@
 class Xwing
 
-	attr_accessor :xwing_laser, :score
+	attr_accessor :xwing_laser, :score, :x, :y
 	SHOOT_DELAY = 250
 
 	def initialize

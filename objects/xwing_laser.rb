@@ -29,8 +29,8 @@ class XwingLaser
 	end
 
 	def hitbox
-		hitbox_x = ((@x - 5).to_i..(@x + 5).to_i).to_a
-		hitbox_y = ((@y - 5).to_i..(@y + 5).to_i).to_a
+		hitbox_x = ((@x - 10).to_i..(@x + 10).to_i).to_a
+		hitbox_y = ((@y - 10).to_i..(@y + 10).to_i).to_a
 		{x: hitbox_x, y: hitbox_y}
 	end
 

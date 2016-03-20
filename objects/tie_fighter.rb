@@ -2,7 +2,7 @@ include Math
 
 class TieFighter
 
-	attr_accessor :tie_laser
+	attr_accessor :tie_laser, :x, :y
 	SHOOT_DELAY = 100
 
 	def initialize
@@ -44,8 +44,8 @@ class TieFighter
 	end
 
 	def hitbox
-		hitbox_x = ((@x - 30).to_i..(@x + 30).to_i).to_a
-		hitbox_y = ((@y - 30).to_i..(@y + 30).to_i).to_a
+		hitbox_x = ((@x - 35).to_i..(@x + 35).to_i).to_a
+		hitbox_y = ((@y - 35).to_i..(@y + 35).to_i).to_a
 		{x: hitbox_x, y: hitbox_y}
 	end
 

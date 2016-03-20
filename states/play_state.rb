@@ -4,6 +4,7 @@ require_relative '../objects/xwing'
 require_relative '../objects/xwing_laser'
 require_relative '../objects/tie_fighter'
 require_relative '../objects/tie_fighter_laser'
+require_relative '../objects/explosion'
 
 class PlayState < GameState
 
@@ -11,6 +12,8 @@ class PlayState < GameState
 		@xwing = Xwing.new
 		@start_time = Time.now
 		@background_image = Gosu::Image.new($window,'art/starry_background.png')
+		@animation = Explosion.load_animation($window)
+		@explosions = []
 	end
 
 
@@ -48,6 +51,8 @@ class PlayState < GameState
 
 		@score_text = Gosu::Image.from_text($window, "Score: #{@xwing.score}",Gosu.default_font_name,30)
 
+		@explosions.reject!(&:done?)
+		@explosions.map(&:update)
 
 	end
 
@@ -56,6 +61,7 @@ class PlayState < GameState
 		@xwing.draw
 		@tie_fighter.draw
 		@score_text.draw(0,0,1)
+		@explosions.map(&:draw)
 	end
 
 	def button_down(id)
@@ -85,6 +91,7 @@ class PlayState < GameState
   	if @xwing.xwing_laser
   		if collision?(@xwing.xwing_laser, @tie_fighter)
   			@tie_fighter.kill
+  			@explosions.push(Explosion.new(@animation, @tie_fighter.x, @tie_fighter.y))
   			@xwing.xwing_laser.kill
   			explosion.play.volume=0.6
   			@xwing.score += 1
