@@ -47,7 +47,9 @@ class PlayState < GameState
 
 		@tie_fighter.update
 
-		detect_collisions
+		unless @tie_fighter.dead?
+			detect_collisions
+		end
 
 		@score_text = Gosu::Image.from_text($window, "Score: #{@xwing.score}",Gosu.default_font_name,30)
 
@@ -57,7 +59,7 @@ class PlayState < GameState
 	end
 
 	def draw
-		@background_image.draw(0,0,0,1,1.5)
+		@background_image.draw(0,0,0,1,1.6)
 		@xwing.draw
 		@tie_fighter.draw
 		@score_text.draw(0,0,1)
@@ -75,13 +77,14 @@ class PlayState < GameState
     common_x = hitbox_1[:x] & hitbox_2[:x]
     common_y = hitbox_1[:y] & hitbox_2[:y]
     common_x.size > 0 && common_y.size > 0
+  	rescue
   end
 
   def detect_collisions
-    if collision?(@tie_fighter, @xwing)
-    	@xwing.kill
-    	explosion.play.volume=0.8
-    end
+	    if collision?(@tie_fighter, @xwing)
+	    	@xwing.kill
+	    	explosion.play.volume=0.8
+	    end
     if @tie_fighter.tie_laser
 	  	if collision?(@tie_fighter.tie_laser, @xwing)
 	  		@xwing.kill
@@ -91,6 +94,13 @@ class PlayState < GameState
   	if @xwing.xwing_laser
   		if collision?(@xwing.xwing_laser, @tie_fighter)
   			@tie_fighter.kill
+  			@tie_fighter.z += -1
+  			if @tie_fighter.tie_laser
+  				@tie_fighter.tie_laser.z += -1
+  			end
+  			if @xwing.xwing_laser
+  				@xwing.xwing_laser.z += -1
+  			end
   			@explosions.push(Explosion.new(@animation, @tie_fighter.x, @tie_fighter.y))
   			@xwing.xwing_laser.kill
   			explosion.play.volume=0.6

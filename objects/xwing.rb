@@ -1,6 +1,6 @@
 class Xwing
 
-	attr_accessor :xwing_laser, :score, :x, :y
+	attr_accessor :xwing_laser, :score, :x, :y, :z
 	SHOOT_DELAY = 250
 
 	def initialize
@@ -48,7 +48,6 @@ class Xwing
 	end
 
 	def kill
-		alive = false
 		GameState.switch(MenuState.instance)
 	end
 

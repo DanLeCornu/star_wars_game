@@ -19,9 +19,12 @@ class Explosion
     return if done?
     image = current_frame
     image.draw(
-      @x - image.width / 2.0,
-      @y - image.height / 2.0,
-      2)
+      @x - (image.width / 2.0) - 20,
+      @y - (image.height / 2.0),
+      2,
+      2,
+      2
+    )
   end
 
   def done?

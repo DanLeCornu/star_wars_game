@@ -1,5 +1,7 @@
 class XwingLaser
 
+	attr_accessor :z
+
 	def initialize(x,y)
 		@x = x
 		@y = y

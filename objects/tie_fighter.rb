@@ -2,7 +2,7 @@ include Math
 
 class TieFighter
 
-	attr_accessor :tie_laser, :x, :y
+	attr_accessor :tie_laser, :x, :y, :z
 	SHOOT_DELAY = 100
 
 	def initialize
@@ -14,7 +14,7 @@ class TieFighter
 		@y = 0
 		@z = 1
 		@alive = true
-		@speed = rand(6..9)
+		@speed = rand(7..10)
 		@last_shot = 0
 		sound.play
 	end
@@ -30,9 +30,11 @@ class TieFighter
 	end
 
 	def draw
-		@tie_fighter_image.draw(@x,@y,@z,0.5,0.5)
-		if @tie_laser
-			@tie_laser.draw
+		unless self.dead?
+			@tie_fighter_image.draw(@x,@y,@z,0.5,0.5)
+			if @tie_laser
+				@tie_laser.draw
+			end
 		end
 	end
 
@@ -44,13 +46,19 @@ class TieFighter
 	end
 
 	def hitbox
-		hitbox_x = ((@x - 35).to_i..(@x + 35).to_i).to_a
-		hitbox_y = ((@y - 35).to_i..(@y + 35).to_i).to_a
-		{x: hitbox_x, y: hitbox_y}
+		unless self.dead?
+			hitbox_x = ((@x - 35).to_i..(@x + 35).to_i).to_a
+			hitbox_y = ((@y - 35).to_i..(@y + 35).to_i).to_a
+			{x: hitbox_x, y: hitbox_y}
+		end
 	end
 
 	def kill
 	  @alive = false
+	end
+
+	def dead?
+		!@alive
 	end
 
 	def sound
