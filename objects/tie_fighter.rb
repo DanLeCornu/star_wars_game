@@ -16,7 +16,7 @@ class TieFighter
 		@alive = true
 
 		# random speed and flight path
-		@speed = rand(8..11)
+		@speed = rand(9..13)
 		@flight_path = rand(1..3)
 
 		@last_shot = 0
@@ -29,9 +29,9 @@ class TieFighter
 
 		#random flight path
 		if @flight_path == 1
-			@x += sin(Time.now.to_f)*5
+			@x += sin(Time.now.to_f)*7
 		elsif @flight_path == 2
-			@x += cos(Time.now.to_f)*5
+			@x += cos(Time.now.to_f)*7
 		end
 
 		if rand(1..60) == 1

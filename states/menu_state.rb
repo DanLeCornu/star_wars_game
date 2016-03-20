@@ -23,10 +23,10 @@ class MenuState < GameState
 		@l_text = Gosu::Image.from_text($window,'L = Fire Laser Cannons',Gosu.default_font_name,20)
 
 		#rules
-		@rules_text = Gosu::Image.from_text($window, 'Shoot the TIE Fighters to score points, avoid enemies and their lasers to survive!',Gosu.default_font_name,20)
+		@rules_text = Gosu::Image.from_text($window, 'Shoot the TIE Fighters to score points. Avoid enemies and their lasers to survive!',Gosu.default_font_name,20)
 
 		#info
-		@info_text = Gosu::Image.from_text($window, 'Created by Dan Le Cornu, code can be seen at https://github.com/MacStump/star_wars_game',Gosu.default_font_name,20)
+		@info_text = Gosu::Image.from_text($window, 'Created by Dan Le Cornu, code can be found at https://github.com/MacStump/star_wars_game',Gosu.default_font_name,20)
 
 		#high score
 		# @high_score = Gosu::Image.from_text($window, "High Score: #{$scores.max}",Gosu.default_font_name,20)
