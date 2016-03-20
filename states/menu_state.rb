@@ -25,6 +25,9 @@ class MenuState < GameState
 		#rules
 		@rules_text = Gosu::Image.from_text($window, 'Shoot the TIE Fighters to score points, avoid enemies and their lasers to survive!',Gosu.default_font_name,20)
 
+		#info
+		@info_text = Gosu::Image.from_text($window, 'Created by Dan Le Cornu, code can be seen at https://github.com/MacStump/star_wars_game',Gosu.default_font_name,20)
+
 	end
 
 	def enter
@@ -107,12 +110,18 @@ class MenuState < GameState
 		@rules_text_x = $window.width/2 - @rules_text.width/2
 		@rules_text_y = $window.height/2 - @rules_text.height/2 + 300
 
+		@info_text_x = $window.width/2 - @info_text.width/2
+		@info_text_y = $window.height - @info_text.height/2 - 25
+
 	end
 
 	def draw
-		@title.draw(@title_x,@title_y,1)
 		@background.draw(@background_x,@background_y,0,@background_fx,@background_fy)
+
+		@title.draw(@title_x,@title_y,1)
+
 		@menu_options.draw(@menu_options_x,@menu_options_y,0)
+
 		@controls_header.draw(@controls_header_x,@controls_header_y,1)
 		@w_text.draw(@w_text_x,@w_text_y,1)
 		@a_text.draw(@a_text_x,@a_text_y,1)
@@ -121,6 +130,10 @@ class MenuState < GameState
 		@l_text.draw(@l_text_x,@l_text_y,1)
 
 		@rules_text.draw(@rules_text_x,@rules_text_y,1)
+
+		@info_text.draw(@info_text_x,@info_text_y,1)
+
+
 	end
 
 end
