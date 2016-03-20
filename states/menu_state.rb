@@ -28,6 +28,9 @@ class MenuState < GameState
 		#info
 		@info_text = Gosu::Image.from_text($window, 'Created by Dan Le Cornu, code can be seen at https://github.com/MacStump/star_wars_game',Gosu.default_font_name,20)
 
+		#high score
+		# @high_score = Gosu::Image.from_text($window, "High Score: #{$scores.max}",Gosu.default_font_name,20)
+
 	end
 
 	def enter
@@ -70,7 +73,7 @@ class MenuState < GameState
 
 		# position for title
 		@title_x = $window.width/2 - @title.width/2
-		@title_y = $window.height/2 - @title.height/2 - 200
+		@title_y = @title.height/2
 
 		# position for background
 		@background_x = 0
@@ -80,36 +83,41 @@ class MenuState < GameState
 
 		# position for menu options
 		@menu_options_x = $window.width/2 - @menu_options.width/2
-		@menu_options_y = $window.height/2 - @menu_options.height/2 - 50
+		@menu_options_y = $window.height/2 - @menu_options.height/2 - 200
 
 		# position for control texts
 		@controls_header_x = $window.width/2 - @controls_header.width/2
-		@controls_header_y = $window.height/2 - @controls_header.height/2 + 50
+		@controls_header_y = $window.height/2 - @controls_header.height/2 -100
 
 		# position for w
 		@w_text_x = $window.width/2 - @w_text.width/2
-		@w_text_y = $window.height/2 - @w_text.height/2 + 100
+		@w_text_y = $window.height/2 - @w_text.height/2 - 50
 
 		# position for a
 		@a_text_x = $window.width/2 - @a_text.width/2
-		@a_text_y = $window.height/2 - @a_text.height/2 + 125
+		@a_text_y = $window.height/2 - @a_text.height/2 - 25
 
 		# position for s
 		@s_text_x = $window.width/2 - @s_text.width/2
-		@s_text_y = $window.height/2 - @s_text.height/2 + 150
+		@s_text_y = $window.height/2 - @s_text.height/2
 
 		# position for d
 		@d_text_x = $window.width/2 - @d_text.width/2
-		@d_text_y = $window.height/2 - @d_text.height/2 + 175
+		@d_text_y = $window.height/2 - @d_text.height/2 + 25
 
-		# position for d
+		# position for l
 		@l_text_x = $window.width/2 - @l_text.width/2
-		@l_text_y = $window.height/2 - @l_text.height/2 + 225
+		@l_text_y = $window.height/2 - @l_text.height/2 + 75
 
-		# position for d
+		# position for rules
 		@rules_text_x = $window.width/2 - @rules_text.width/2
-		@rules_text_y = $window.height/2 - @rules_text.height/2 + 300
+		@rules_text_y = $window.height/2 - @rules_text.height/2 + 150
 
+		# position for high score
+		# @high_score_x = $window.width/2 - @high_score.width/2
+		# @high_score_y = $window.height/2 - @high_score.height/2 + 250
+
+		# position for info text
 		@info_text_x = $window.width/2 - @info_text.width/2
 		@info_text_y = $window.height - @info_text.height/2 - 25
 
@@ -130,6 +138,8 @@ class MenuState < GameState
 		@l_text.draw(@l_text_x,@l_text_y,1)
 
 		@rules_text.draw(@rules_text_x,@rules_text_y,1)
+
+		# @high_score.draw(@high_score_x,@high_score_y,1)
 
 		@info_text.draw(@info_text_x,@info_text_y,1)
 

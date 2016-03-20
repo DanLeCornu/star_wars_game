@@ -41,7 +41,7 @@ class PlayState < GameState
 
 		# if the current time is greater than the init time, add time to the start time and spawn a new tie fighter
 		if Time.now > @start_time
-			@start_time += +rand(2.0..4.0)
+			@start_time += +rand(1.0..3.0)
 			@tie_fighter = TieFighter.new
 		end
 
@@ -82,11 +82,13 @@ class PlayState < GameState
 
   def detect_collisions
 	    if collision?(@tie_fighter, @xwing)
+	    	# $scores << @xwing.score
 	    	@xwing.kill
 	    	explosion.play.volume=0.8
 	    end
     if @tie_fighter.tie_laser
 	  	if collision?(@tie_fighter.tie_laser, @xwing)
+	  		# $scores << @xwing.score
 	  		@xwing.kill
 	  		explosion.play.volume=0.8
 	  	end

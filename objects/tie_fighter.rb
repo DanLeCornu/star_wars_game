@@ -14,13 +14,26 @@ class TieFighter
 		@y = 0
 		@z = 1
 		@alive = true
+
+		# random speed and flight path
 		@speed = rand(8..11)
+		@flight_path = rand(1..3)
+
 		@last_shot = 0
 		sound.play
 	end
 
 	def update
 		@y += +@speed
+
+
+		#random flight path
+		if @flight_path == 1
+			@x += sin(Time.now.to_f)*5
+		elsif @flight_path == 2
+			@x += cos(Time.now.to_f)*5
+		end
+
 		if rand(1..60) == 1
 			shoot
 		end

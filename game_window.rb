@@ -3,6 +3,7 @@ class GameWindow < Gosu::Window
 
 	def initialize
 		super(800, 1000, false)
+		# $scores = []
 	end
 
 	def update
